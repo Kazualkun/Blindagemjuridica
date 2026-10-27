@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ateliê Exemplo</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <header>
+    <img src="img/logo.svg" alt="Ateliê Exemplo">
+    <button aria-label="Abrir menu"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 6h18"/></svg></button>
+  </header>
+  <main id="conteudo">
+    <h1>Cerâmica feita à mão em Belo Horizonte</h1>
+    <p>Peças utilitárias produzidas em pequenos lotes.</p>
+    <form action="/api/contato" method="post">
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" type="text" autocomplete="name">
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" autocomplete="email">
+      <label><input type="checkbox" name="novidades"> Quero receber novidades por e-mail (opcional)</label>
+      <p>Usamos seus dados apenas para responder ao contato. Veja a <a href="politicas/privacidade.html">Política de Privacidade</a>.</p>
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+  <footer>
+    <p>Ateliê Exemplo Ltda — CNPJ 11.222.333/0001-81 — Rua das Flores, 100, Centro, Belo Horizonte/MG, CEP 30110-000</p>
+    <p>Atendimento: contato@atelie-exemplo.com.br · (31) 3333-4444</p>
+    <a href="politicas/privacidade.html">Privacidade</a> · <a href="politicas/termos.html">Termos</a>
+  </footer>
+</body>
+</html>

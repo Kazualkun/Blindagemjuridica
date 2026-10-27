@@ -1,0 +1,12 @@
+{
+  "name": "blindagem-juridica",
+  "version": "1.0.0",
+  "description": "Audita e corrige riscos jurídicos de sites, lojas, SaaS e apps no Brasil: LGPD, política de privacidade, termos, cookies, rastreamento, reembolso (CDC), acessibilidade (LBI/WCAG), publicidade enganosa, direitos autorais e identificação da empresa.",
+  "author": {
+    "name": "SEU-NOME"
+  },
+  "homepage": "https://github.com/SEU-USUARIO/blindagem-juridica",
+  "repository": "https://github.com/SEU-USUARIO/blindagem-juridica",
+  "license": "MIT",
+  "keywords": ["lgpd", "compliance", "juridico", "privacidade", "cookies", "acessibilidade", "wcag", "cdc", "brasil"]
+}

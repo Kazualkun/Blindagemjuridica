@@ -1,0 +1,20 @@
+{
+  "name": "blindagem-juridica",
+  "owner": {
+    "name": "SEU-NOME"
+  },
+  "metadata": {
+    "description": "Skill de auditoria e correção de riscos jurídicos (LGPD, CDC, acessibilidade) para projetos web brasileiros.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "blindagem-juridica",
+      "source": "./",
+      "description": "Audita e corrige riscos jurídicos de sites, lojas, SaaS e apps no Brasil (17 itens: LGPD, cookies, reembolso, acessibilidade, publicidade, direitos autorais e mais).",
+      "version": "1.0.0",
+      "category": "compliance",
+      "keywords": ["lgpd", "compliance", "acessibilidade", "cookies", "brasil"]
+    }
+  ]
+}

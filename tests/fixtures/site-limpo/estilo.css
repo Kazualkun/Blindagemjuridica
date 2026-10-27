@@ -1,0 +1,4 @@
+body { color: #1f2937; background: #ffffff; }
+.pular { position: absolute; left: -999px; }
+.pular:focus { left: 8px; }
+a:focus-visible, button:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 2px; }
