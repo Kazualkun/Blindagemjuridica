@@ -1,16 +1,49 @@
-# ⚖️ Blindagem Jurídica — skill para Claude Code
+<div align="center">
 
-Skill que **audita e corrige** riscos jurídicos de sites, lojas virtuais, SaaS, landing pages e
-apps sob a lei brasileira. Ela lê o código do seu projeto, encontra o que pode render multa,
-reclamação no Procon ou processo, **corrige o que é técnico**, **gera os documentos legais sob
-medida** e **pergunta** o que só você pode responder.
+# ⚖️ Blindagem Jurídica
 
-> **Aviso:** a skill reduz riscos de forma técnica e automatizada, mas **não substitui um(a)
-> advogado(a)**. Documentos contratuais e casos de alto risco devem passar por revisão jurídica.
+**Skill para Claude Code que audita e corrige os riscos jurídicos do seu site, loja ou app, pela lei brasileira.**
+
+LGPD · CDC · cookies · acessibilidade · publicidade · direitos autorais
+
+[![Testes](https://github.com/Kazualkun/BlindagemJur-dica/actions/workflows/testes.yml/badge.svg)](https://github.com/Kazualkun/BlindagemJur-dica/actions/workflows/testes.yml)
+[![Licença: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-green.svg)](LICENSE)
+![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)
+![Sem dependências](https://img.shields.io/badge/depend%C3%AAncias-zero-brightgreen.svg)
+
+[Instalação](#-instalação) · [Como usar](#-como-usar) · [O que verifica](#-o-que-ela-verifica) · [Limitações](#-limitações)
+
+</div>
 
 ---
 
-## O que ela verifica (17 itens)
+A skill lê o código do seu projeto, encontra o que pode render **multa, reclamação no Procon ou processo**, corrige o que é técnico, gera os documentos legais **sob medida** e **pergunta** o que só você pode responder.
+
+> [!WARNING]
+> A skill reduz riscos de forma técnica e automatizada, mas **não substitui um(a) advogado(a)**. Documentos contratuais e casos de alto risco devem passar por revisão jurídica.
+
+## ✨ Destaques
+
+- 🔍 **Audita código real**, não um questionário. A política de privacidade é montada a partir dos rastreadores, fornecedores e campos de formulário que existem no seu projeto.
+- 🛠️ **Entrega feito**: alt, contraste, teclado, banner de cookies, formulários, rodapé com dados da empresa e documentos legais.
+- ❓ **Pergunta o que não sabe**: CNPJ, encarregado (DPO), prazos de troca, se os depoimentos são reais, origem das imagens. Nunca inventa dado.
+- 🧑‍⚖️ **Decisões de negócio ficam com você**: depoimentos, promessas, imagens e campos de formulário só mudam com a sua aprovação.
+- 📎 **Cada achado vem com evidência** (`arquivo:linha`), gravidade e base legal.
+- 🧩 **Banner de cookies pronto** que também funciona sozinho, em JS puro.
+
+## 📋 O que ela verifica
+
+<table>
+<tr><th>Grupo</th><th>Itens</th></tr>
+<tr><td><b>📄 Documentos legais</b></td><td>Política de privacidade · Termos de uso · Política de reembolso</td></tr>
+<tr><td><b>🍪 Cookies e dados</b></td><td>Aviso de cookies · Scripts de tracking · Formulários na LGPD · Só dados necessários · Conformidade LGPD</td></tr>
+<tr><td><b>♿ Acessibilidade</b></td><td>Acessibilidade geral · Alt nas imagens · Contraste · Navegação por teclado</td></tr>
+<tr><td><b>📣 Publicidade</b></td><td>Sem avaliações falsas · Sem promessas falsas</td></tr>
+<tr><td><b>🏢 Empresa e propriedade</b></td><td>Dados da empresa · Copyright das imagens · Outros riscos jurídicos</td></tr>
+</table>
+
+<details>
+<summary><b>Ver os 17 itens em detalhe</b></summary>
 
 | # | Item | O que procura e corrige |
 |---|------|------------------------|
@@ -32,75 +65,104 @@ medida** e **pergunta** o que só você pode responder.
 | 16 | **Conformidade LGPD** | Canal do titular, encarregado, exclusão de conta, hash de senha, segredos expostos, IA, menores (ECA Digital) |
 | 17 | **Riscos jurídicos** | Sorteios sem autorização, apostas, dark patterns, venda casada, e-mail sem descadastro, licenças copyleft |
 
-## Como ela trabalha
+</details>
 
-1. **Reconhecimento** — roda um scanner (Python, sem dependências) e lê o projeto: stack, mapa
-   de dados pessoais, rastreadores, fornecedores, documentos existentes.
-2. **Uma rodada de perguntas** — só o que o código não responde: CNPJ, encarregado, prazos de
-   troca, se os depoimentos são reais, origem das imagens…
-3. **Auditoria** item a item, com severidade (🔴 crítico · 🟠 alto · 🟡 médio · 🔵 baixo),
-   evidência `arquivo:linha` e base legal.
-4. **Correções** — aplica direto o que é técnico (alt, contraste, teclado, banner de cookies,
-   formulários, rodapé) e cria os documentos **no formato da sua stack** (página Next.js, Vue,
-   HTML, WordPress…). Conteúdo de negócio (depoimentos, promessas, imagens) só muda com sua
-   aprovação.
-5. **Verificação** — roda o scanner de novo e o build/lint/testes do projeto.
-6. **Relatório** — `AUDITORIA-JURIDICA.md` com placar antes/depois, o que foi feito, o que
-   depende de você e as respostas guardadas para a próxima execução.
+## 🔄 Como ela trabalha
 
-## Instalação
-
-### Opção 1 — como plugin (recomendado)
-No Claude Code:
+```mermaid
+flowchart LR
+    A[1. Reconhecimento<br/>scanner + leitura do projeto] --> B[2. Perguntas<br/>uma única rodada]
+    B --> C[3. Auditoria<br/>17 itens, gravidade e base legal]
+    C --> D[4. Correções<br/>código e documentos]
+    D --> E[5. Verificação<br/>scanner de novo, build e testes]
+    E --> F[6. Relatório<br/>AUDITORIA-JURIDICA.md]
 ```
-/plugin marketplace add SEU-USUARIO/blindagem-juridica
+
+Cada achado recebe uma gravidade:
+
+| | Gravidade | Exemplo |
+|---|-----------|---------|
+| 🔴 | **Crítico** | Pixel de publicidade carregando antes do consentimento, depoimento com foto gerada, segredo exposto |
+| 🟠 | **Alto** | Sem política de reembolso em loja, imagem de banco pago, consentimento tácito |
+| 🟡 | **Médio** | Campo de CPF sem justificativa, `lang` errado, formulário sem aviso de privacidade |
+| 🔵 | **Baixo** | Sem skip link, `alt` genérico, link "clique aqui" |
+
+O relatório final traz o placar antes/depois, o que foi corrigido, o que depende de você e as respostas guardadas para a próxima execução.
+
+## 🚀 Instalação
+
+**Requisito:** Python 3.9+ para o scanner. É opcional: sem Python, a skill varre com as ferramentas de busca do Claude, só que mais devagar.
+
+<details open>
+<summary><b>Opção 1: como plugin (recomendado)</b></summary>
+
+No Claude Code:
+
+```
+/plugin marketplace add Kazualkun/BlindagemJur-dica
 /plugin install blindagem-juridica@blindagem-juridica
 ```
 
-### Opção 2 — skill pessoal (todos os seus projetos)
+</details>
+
+<details>
+<summary><b>Opção 2: skill pessoal (vale para todos os seus projetos)</b></summary>
+
 ```bash
-git clone https://github.com/SEU-USUARIO/blindagem-juridica.git
+git clone https://github.com/Kazualkun/BlindagemJur-dica.git
+
 # macOS / Linux
-cp -r blindagem-juridica/skills/blindagem-juridica ~/.claude/skills/
+cp -r BlindagemJur-dica/skills/blindagem-juridica ~/.claude/skills/
+
 # Windows (PowerShell)
-Copy-Item -Recurse blindagem-juridica\skills\blindagem-juridica $HOME\.claude\skills\
+Copy-Item -Recurse BlindagemJur-dica\skills\blindagem-juridica $HOME\.claude\skills\
 ```
 
-### Opção 3 — skill do projeto (compartilhada com o time via git)
+</details>
+
+<details>
+<summary><b>Opção 3: skill do projeto (compartilhada com o time via git)</b></summary>
+
 Copie `skills/blindagem-juridica` para `.claude/skills/` na raiz do seu projeto.
 
-**Requisito:** Python 3.9+ para o scanner (opcional — sem Python, a skill faz a varredura com
-as ferramentas de busca do Claude, só que mais devagar).
+</details>
 
-## Como usar
+## 💬 Como usar
 
 Com o projeto aberto no Claude Code:
 
-```
+```text
 /blindagem-juridica                 # auditoria completa + correções
 /blindagem-juridica auditar         # só diagnóstico e relatório, sem alterar o projeto
 /blindagem-juridica itens 3,7       # só cookies e rastreamento
 /blindagem-juridica itens 8-11      # só acessibilidade
 ```
 
-Ou peça em linguagem natural — a skill é acionada automaticamente:
+Ou peça em linguagem natural, que a skill é acionada sozinha:
 
-> "Meu site está dentro da LGPD?"
-> "Cria a política de privacidade e o banner de cookies da loja."
-> "Vou lançar a landing page amanhã, tem algo que pode dar processo?"
+> *"Meu site está dentro da LGPD?"*
+> *"Cria a política de privacidade e o banner de cookies da loja."*
+> *"Vou lançar a landing page amanhã, tem algo que pode dar processo?"*
 
-(Instalada como plugin, o comando fica com o prefixo do plugin:
-`/blindagem-juridica:blindagem-juridica`.)
+Instalada como plugin, o comando leva o prefixo do plugin: `/blindagem-juridica:blindagem-juridica`.
 
 ### Usar só o scanner
+
 ```bash
+# varredura completa em Markdown
 python skills/blindagem-juridica/scripts/scan.py caminho/do/projeto
+
+# saída em JSON, gravada em arquivo
 python skills/blindagem-juridica/scripts/scan.py caminho/do/projeto --format json --saida achados.json
-python skills/blindagem-juridica/scripts/contraste.py "#999" "#fff"   # 2.85:1 → sugere #767676
+
+# contraste WCAG com sugestão de cor que passa
+python skills/blindagem-juridica/scripts/contraste.py "#999" "#fff"   # 2.85:1, sugere #767676
 ```
 
-Exemplo de saída (projeto de teste em `tests/fixtures/loja-problematica`):
-```
+<details>
+<summary><b>Exemplo de saída</b> (projeto de teste em <code>tests/fixtures/loja-problematica</code>)</summary>
+
+```text
 ### 3. Aviso e gestão de cookies
 - 🔴 cookies-sem-consentimento Rastreadores/cookies não essenciais sem gestão de consentimento:
   Google Analytics, Meta Pixel (Facebook/Instagram), Hotjar. Precisam ser bloqueados até o
@@ -112,56 +174,61 @@ Exemplo de saída (projeto de teste em `tests/fixtures/loja-problematica`):
   informação falsa ao consumidor (CDC art. 37 e 66) - `index.html:70`
 ```
 
-## O que vem na skill
+</details>
 
-```
+## 🍪 Banner de cookies incluído
+
+O banner em [`templates/cookie-consent/`](skills/blindagem-juridica/templates/cookie-consent/) também pode ser usado sozinho, sem a skill:
+
+- Sem dependências, em JS puro e CSS.
+- Bloqueia scripts e iframes até o aceite.
+- "Rejeitar não essenciais" no primeiro nível, com o mesmo destaque de "Aceitar".
+- Escolha por categoria e link permanente de preferências no rodapé.
+- Google Consent Mode v2 (padrão `denied`).
+- Acessível por teclado, com foco preso no painel e `Esc` para fechar.
+
+Veja o [guia de instalação do banner](skills/blindagem-juridica/templates/cookie-consent/README.md).
+
+## 📦 O que vem na skill
+
+```text
 skills/blindagem-juridica/
-├── SKILL.md                     # fluxo de trabalho e regras
+├── SKILL.md                         # fluxo de trabalho e regras
 ├── scripts/
-│   ├── scan.py                  # varredura heurística dos 17 itens (Markdown ou JSON)
-│   └── contraste.py             # razão de contraste WCAG + sugestão de cor
-├── references/                  # requisitos legais, como auditar e como corrigir, por item
-│   ├── base-legal.md            # LGPD, CDC, Decreto 7.962, LBI, Marco Civil, ECA Digital…
-│   └── ...
+│   ├── scan.py                      # varredura heurística dos 17 itens (Markdown ou JSON)
+│   └── contraste.py                 # razão de contraste WCAG + sugestão de cor
+├── references/                      # requisitos legais, como auditar e como corrigir, por item
+│   ├── base-legal.md                # LGPD, CDC, Decreto 7.962, LBI, Marco Civil, ECA Digital…
+│   └── …
 └── templates/
     ├── politica-de-privacidade.md
     ├── termos-de-uso.md
     ├── politica-de-cookies.md
     ├── politica-de-reembolso.md
     ├── declaracao-de-acessibilidade.md
-    ├── registro-de-operacoes.md       # ROPA (LGPD art. 37)
-    ├── plano-resposta-incidentes.md   # Res. CD/ANPD 15/2024
+    ├── registro-de-operacoes.md     # ROPA (LGPD art. 37)
+    ├── plano-resposta-incidentes.md # Res. CD/ANPD 15/2024
     ├── relatorio-auditoria.md
-    └── cookie-consent/                # banner de consentimento pronto (JS puro + CSS)
+    └── cookie-consent/              # banner de consentimento pronto
 ```
 
-O **banner de consentimento** (`templates/cookie-consent/`) também pode ser usado sozinho: sem
-dependências, bloqueia scripts e iframes até o aceite, tem "Rejeitar" no primeiro nível,
-categorias, link permanente de preferências, Google Consent Mode v2 e navegação por teclado.
+## ⚠️ Limitações
 
-## Limitações
+- O scanner é **heurístico**: aponta pistas com arquivo e linha, e a skill confirma lendo o código. Conteúdo vindo de CMS ou banco, tags configuradas dentro do Google Tag Manager e imagens sem metadados precisam de informação sua.
+- O contraste só é calculado quando cor e fundo estão no mesmo seletor ou elemento. Fundos herdados são revisados manualmente pela skill.
+- O foco é a legislação brasileira. Se você atende a União Europeia ou os EUA, a skill sinaliza GDPR, CCPA e ADA, mas recomenda análise específica.
+- Normas mudam. A base legal foi revisada em outubro de 2026, e contribuições de atualização são muito bem-vindas.
 
-- O scanner é **heurístico**: aponta pistas com arquivo e linha; a skill confirma lendo o código.
-  Conteúdo vindo de CMS/banco, tags configuradas dentro do Google Tag Manager e imagens sem
-  metadados precisam de informação sua.
-- O contraste é calculado quando cor e fundo estão no mesmo seletor/elemento; fundos herdados
-  são revisados manualmente pela skill.
-- Foco na legislação brasileira. Se você atende a União Europeia ou os EUA, a skill sinaliza
-  GDPR/CCPA/ADA, mas recomenda análise específica.
-- Normas mudam. A base legal foi revisada em outubro de 2026; contribuições de atualização são
-  muito bem-vindas.
+## 🤝 Contribuindo
 
-## Desenvolvimento
+Quer atualizar uma lei, ensinar o scanner a reconhecer um novo rastreador ou reportar um falso positivo? Veja o [CONTRIBUTING.md](CONTRIBUTING.md). Para rodar os testes:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
-Os testes usam dois sites de exemplo em `tests/fixtures/`: um cheio de problemas e um correto
-(que não pode gerar achados graves). Veja [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Licença
+Os testes usam dois sites de exemplo em `tests/fixtures/`: um cheio de problemas e um correto, que não pode gerar achados graves.
 
-[MIT](LICENSE). Os modelos de documentos podem ser usados e adaptados livremente, inclusive
-comercialmente — lembrando que nenhum modelo dispensa a adaptação ao seu negócio.
-#   B l i n d a g e m J u r - d i c a  
- 
+## 📄 Licença
+
+[MIT](LICENSE). Os modelos de documentos podem ser usados e adaptados livremente, inclusive comercialmente. Nenhum modelo dispensa a adaptação ao seu negócio.
